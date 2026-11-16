@@ -1,33 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManagerX : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] ballPrefabs;
-
-    private float spawnLimitXLeft = -22;
-    private float spawnLimitXRight = 7;
-    private float spawnPosY = 30;
-
+    public GameObject[] collectiblePrefabs;
+    private float spawnRangeX = 4.5f;
+    private float spawnPosY = 8.0f;
     private float startDelay = 1.0f;
-    private float spawnInterval = 4.0f;
+    private float spawnInterval = 1.2f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRandomBall", startDelay, spawnInterval);
+        InvokeRepeating("SpawnRandomCollectible", startDelay, spawnInterval);
     }
 
-    // Spawn random ball at random x position at top of play area
-    void SpawnRandomBall()
+    void SpawnRandomCollectible()
     {
-        // Generate random ball index and random spawn position
-        Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
-        int randomBall = Random.Range(0, (ballPrefabs.Length));
-        // instantiate ball at random spawn locations
-        Instantiate(ballPrefabs[randomBall], spawnPos, ballPrefabs[randomBall].transform.rotation);
-
+        int index = Random.Range(0, collectiblePrefabs.Length);
+        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), spawnPosY, 0);
+        Instantiate(collectiblePrefabs[index], spawnPos, collectiblePrefabs[index].transform.rotation);
     }
-
 }

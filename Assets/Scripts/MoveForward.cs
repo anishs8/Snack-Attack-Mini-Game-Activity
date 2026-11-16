@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MoveForward : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float fallSpeed = 5.0f;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.down * Time.deltaTime * fallSpeed, Space.World);
     }
 }
